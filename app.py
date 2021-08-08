@@ -1,5 +1,5 @@
 import numpy as np
-from flask import Flask, request, jsonify, render_template
+from flask import Flask,request,render_template
 import pickle
 
 app = Flask(__name__)
@@ -22,13 +22,7 @@ def predict():
     return render_template('index.html', prediction_text='Profit should be $ {}'.format(output))
 
 
-@app.route('/results', methods=['POST'])
-def results():
-    data = request.get_json(force=True)
-    prediction = model.predict([np.array(list(data.values()))])
 
-    output = prediction[0]
-    return jsonify(output)
 
 
 if __name__ == "__main__":
